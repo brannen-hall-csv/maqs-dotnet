@@ -8,6 +8,7 @@ using CognizantSoftvision.Maqs.BaseDatabaseTest;
 using CognizantSoftvision.Maqs.BaseWebServiceTest;
 using CognizantSoftvision.Maqs.Utilities.Helper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 
@@ -42,7 +43,7 @@ namespace FrameworkUnitTests
             WebServiceDriverManager newDriver = new WebServiceDriverManager(() => new HttpClient(), this.TestObject);
             this.ManagerStore.Add("test", newDriver);
 
-            Assert.AreNotEqual(this.TestObject.WebServiceDriver, this.ManagerStore.GetManager<WebServiceDriverManager>("test"));
+            Assert.AreNotEqual<Object>(this.TestObject.WebServiceDriver, this.ManagerStore.GetManager<WebServiceDriverManager>("test"));
             Assert.AreNotEqual(this.TestObject.WebServiceManager.Get(), this.ManagerStore.GetDriver<WebServiceDriver>("test"));
         }
 
@@ -55,7 +56,7 @@ namespace FrameworkUnitTests
             WebServiceDriverManager newDriver = new WebServiceDriverManager(new WebServiceDriver(new HttpClient()), this.TestObject);
             this.ManagerStore.Add("test", newDriver);
 
-            Assert.AreNotEqual(this.TestObject.WebServiceDriver, this.ManagerStore.GetManager<WebServiceDriverManager>("test"));
+            Assert.AreNotEqual<Object>(this.TestObject.WebServiceDriver, this.ManagerStore.GetManager<WebServiceDriverManager>("test"));
             Assert.AreNotEqual(this.TestObject.WebServiceManager.Get(), this.ManagerStore.GetManager<WebServiceDriverManager>("test").Get());
         }
 
